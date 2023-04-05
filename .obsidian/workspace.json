@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#Switch-Statement",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -65,7 +65,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -146,9 +147,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "113017e217a481c0",
+  "active": "7156dae64a638eac",
   "lastOpenFiles": [
-    "README.md",
-    "JavaScript.md"
+    "Switch Statement.md",
+    "JavaScript.md",
+    "Untitled.canvas",
+    "2023-04-05.md",
+    "README.md"
   ]
 }
