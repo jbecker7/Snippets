@@ -1,4 +1,6 @@
 #Switch-Statement
+
+Using a switch statement can be useful as an alternative to if/else when we have multiple options (e.g. rolling dice).
 ```
 function playSoundEffect(effect) {
 	switch (effect) {
@@ -22,5 +24,6 @@ function playSoundEffect(effect) {
 				isFireplacePlaying = true;
 			}
 			break;
+			}
 ```
 

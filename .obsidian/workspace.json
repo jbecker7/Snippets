@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "029d6cea468b8a18",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Wordpress.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -48,7 +61,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#Switch-Statement",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -65,8 +78,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -86,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "JavaScript.md",
+                "file": "Wordpress.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "JavaScript.md",
+                "file": "Wordpress.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "JavaScript.md"
+                "file": "Wordpress.md"
               }
             }
           }
@@ -147,10 +159,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "7156dae64a638eac",
+  "active": "029d6cea468b8a18",
   "lastOpenFiles": [
-    "Switch Statement.md",
     "JavaScript.md",
+    "Wordpress.md",
+    "Untitled",
+    "Switch Statement.md",
     "Untitled.canvas",
     "2023-04-05.md",
     "README.md"
