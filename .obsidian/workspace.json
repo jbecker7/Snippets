@@ -8,18 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "113017e217a481c0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "JavaScript.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "029d6cea468b8a18",
             "type": "leaf",
             "state": {
@@ -42,9 +30,33 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "30f8da305335520a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Coding Interview Prep/Arrays.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "cb332556696424c1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Coding Interview Prep/Arrays.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -110,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Python.md",
+                "file": "Coding Interview Prep/Arrays.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Python.md",
+                "file": "Coding Interview Prep/Arrays.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Python.md"
+                "file": "Coding Interview Prep/Arrays.md"
               }
             }
           }
@@ -171,12 +183,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "54f389f1cb4aa23b",
+  "active": "ac52b41c903d64a5",
   "lastOpenFiles": [
-    "Wordpress.md",
-    "Python.md",
-    "Untitled",
+    "Coding Interview Prep/Arrays.md",
+    "Untitled.md",
+    "Coding Interview Prep",
     "JavaScript.md",
+    "Python.md",
+    "Untitled 1",
+    "Wordpress.md",
     "Switch Statement.md",
     "Untitled.canvas",
     "2023-04-05.md",
