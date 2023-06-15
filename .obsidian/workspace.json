@@ -13,50 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Wordpress.md",
+                "file": "Specific Technologies/Wordpress.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "54f389f1cb4aa23b",
+            "id": "7e40670fd74bc9f3",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Python.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "30f8da305335520a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Coding Interview Prep/Arrays.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "cb332556696424c1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Coding Interview Prep/Arrays.md",
+                "file": "Coding Interview Prep/Trees.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -101,6 +77,14 @@
               "type": "starred",
               "state": {}
             }
+          },
+          {
+            "id": "01dcd40443f4990c",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ]
       }
@@ -122,7 +106,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Coding Interview Prep/Arrays.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +122,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Coding Interview Prep/Arrays.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -161,12 +143,19 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Coding Interview Prep/Arrays.md"
-              }
+              "state": {}
+            }
+          },
+          {
+            "id": "a9a5a961e0ba627d",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -183,18 +172,21 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ac52b41c903d64a5",
+  "active": "a9a5a961e0ba627d",
   "lastOpenFiles": [
+    "Coding Interview Prep/Trees.md",
+    "Specific Technologies/Wordpress.md",
+    "Coding Interview Prep/Math.md",
+    "Specific Technologies/Python.md",
+    "Specific Technologies/JavaScript.md",
     "Coding Interview Prep/Arrays.md",
+    "README.md",
+    "Specific Technologies",
     "Untitled.md",
     "Coding Interview Prep",
-    "JavaScript.md",
-    "Python.md",
     "Untitled 1",
-    "Wordpress.md",
     "Switch Statement.md",
     "Untitled.canvas",
-    "2023-04-05.md",
-    "README.md"
+    "2023-04-05.md"
   ]
 }
