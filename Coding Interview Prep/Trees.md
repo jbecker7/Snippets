@@ -73,6 +73,7 @@ def dfs(visited, graph, node):
 
 ## Binary Search Trees 
 #### Time: O(logn) (height of tree)
+(Cost of rebalancing?)
 - Characteristics:
 	- Binary Tree (so each node has a maximum of two children)
 	- Left subtrees are less than parent
@@ -143,11 +144,74 @@ def BST_size(node):
     return count
 ```
 
-- [ ]  print_values // prints the values in the tree, from min to max
-- [ ]  delete_tree
-- [ ]  is_in_tree // returns true if given value exists in the tree
-- [ ]  get_min // returns the minimum value stored in the tree
-- [ ]  get_max // returns the maximum value stored in the tree
-- [ ]  is_binary_search_tree
-- [ ]  delete_value
-- [ ]  get_successor // returns next-highest value in tree after given value, -1 if none
+### Heap/Priority Queue/Binary Heap
+
+#### Heap
+
+- Definitions
+	- Complete binary tree
+		- All leaf elements must lean to the left
+		- The last leaf might not have a right sibling
+	- "In a max heap, for any given node C, if P is a parent of C, then the key of P is greater than or equal to the key of C"
+	- "In a min heap, the key of P is less than or equal to the key of C"
+	- As in other data structures, the node at the top without parents is called the root node
+
+![[Pasted image 20230617125433.png]]
+
+- HeapSort
+	- Can be done using priority queues
+		- create an empty priority queue
+		- for i from 1 to n:
+			- insert (A[i])
+		- for i from n down to 1:
+			- A[i] <- ExtractMax()
+- Useful because
+	- Height of heap is guaranteed to be O(log(N)) so operations from root to leaf are bounded  by O(log(N))
+	- Since nodes in a root-to-leaf path are sorted, adding/removing a node, we only have to fix the order in the vertical path the node is in (so insertion and deletion are both O(log(N)) too)
+- We can find the first free leaf to place our new key at using bubble up:
+```python
+def bubble_up(node):
+	while node.parent and node.parent.key > node.key:
+		#Obviously swap is Pseudocode
+		swap node and node.parent
+		node = node.parent
+```
+
+- We can delete_min using bubble down:
+```python
+def bubble_down(node):
+	while node is not a leaf:
+		smallest_child = child of node with smallest key
+		if smallest_child < node:
+			swap node and smallest_child
+			node = smallest_child
+		else:
+			break
+```
+#### Priority Queue
+- A special version of a queue
+- However, priority queue has no notion of "start" or "end," instead it has a priority each element is assigned, and we can remove them based on those priorities 
+- Thus, we need to have an Insert(p) operation and an Extract() method
+	- Insert(p) inserts a new element with priority p
+	- Extract() extracts the element with the maximum priority
+- Additional operations we could add
+	- Remove(it) removes an element based on a given iterator
+	- GetMax() returns the maximum priority but doesn't extract
+	- ChangePriority(it, p) changes the priority of an element pointed by it to p
+- Implementation in Python
+	- Could use a list or heapq or queue.priorityqueue
+	- We would prefer using a heap 
+
+
+#### Binary Heap
+- A specific type of heap implemented using a binary tree
+- Can be implemented using an array, with position in the array corresponding to position in the binary tree
+
+
+
+### Tries
+- Definitions:
+	- A binary tree where the root represents the empty bit sequence and the two children represent letters that could come after to form a word
+	- Used to store different words/sequences often
+	- Instead of left and right nodes, we have some sort of lookup table
+- Really useful for word validation (e.g. walk through this scrabble board and find all the words)
