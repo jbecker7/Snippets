@@ -147,6 +147,8 @@ def BST_size(node):
 ### Heap/Priority Queue/Binary Heap
 
 #### Heap
+##### Insertion O(logn)
+##### Access O(1)
 
 - Definitions
 	- Complete binary tree
@@ -208,10 +210,73 @@ def bubble_down(node):
 - Can be implemented using an array, with position in the array corresponding to position in the binary tree
 
 
-
 ### Tries
 - Definitions:
 	- A binary tree where the root represents the empty bit sequence and the two children represent letters that could come after to form a word
 	- Used to store different words/sequences often
 	- Instead of left and right nodes, we have some sort of lookup table
 - Really useful for word validation (e.g. walk through this scrabble board and find all the words)
+
+
+
+## Tree LC Problems
+
+### [Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
+
+#### Recursive Approach
+##### Complexity: O(n)
+
+```python
+class Solution:
+	def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+		res = []
+		
+		def inorder(root):
+			if not root:
+				return
+			inorder(root.left)
+			res.append(root.val)
+			inorder(root.right)
+
+		inorder(root)
+		return res
+		
+```
+
+
+### Iterative Approach
+
+(Do I need to add this lol)
+
+### [Binary Tree Zigzag Level Order Traversal](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
+
+##### Complexity: O(n)
+(Does space complexity get asked a lot)
+
+```python
+class Solution:
+	def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+		res = []
+		q = deque([root] if root else [])
+		while q:
+			level = []
+			for i in range(len(q)):
+				node = q.popleft()
+				level.append(node.val)
+				if node.left:
+					q.append(node.left)
+				if node.right:
+					q.append(node.right)
+			level = reversed(level) if len(res) % 2 == 1 else level
+			res.append(level)
+		return res
+```
+
+
+### [Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+
+##### Complexity: 
+
+Some helpful facts:
+- First value in preorder traversal is *always* going to be the root
+	-Sublist can be considered recursively 
