@@ -280,3 +280,42 @@ class Solution:
 Some helpful facts:
 - First value in preorder traversal is *always* going to be the root
 	-Sublist can be considered recursively 
+```python
+class Solution:
+	def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+		if not preorder or not inorder:
+			return None
+		
+		root = TreeNode(preorder[0])
+		mid = inorder.index(preorder[0])
+		root.left = self.buildTree(preorder[1:mid + 1], inorder[:mid])
+		root.right = self.buildTree(preorder[mid + 1:], inorder[mid + 1:])
+```
+
+
+### [Populating Next Right Pointers in Each Node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/)
+
+##### Complexity: O(n) for time and memory
+
+- We are essentially using BFS
+- Current node, connect next nodes
+- then switch next to be current and have its children as next
+```python
+class Solution:
+	def connect(self, node: 'Optional[Node]') -> 'Optional[Node]':
+		cur, nxt = node, node.left if node else None
+
+		while cur and nxt:
+			cur.left.next = cur.right
+			if cur.next:
+				cur.right.next = cur.next.left
+
+			cur = cur.next
+			if not cur:
+				cur = nxt
+				next = cur.left
+		
+		return node
+```
+
+
