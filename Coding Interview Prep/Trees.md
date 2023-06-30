@@ -61,8 +61,8 @@ def dfs(visited, graph, node):
     if node not in visited:
         print (node)
         visited.add(node)
-        for neighbour in graph[node]:
-            dfs(visited, graph, neighbour)
+        for neighbor in graph[node]:
+            dfs(visited, graph, neighbor)
 ```
 
 - Types of traversals
@@ -318,4 +318,86 @@ class Solution:
 		return node
 ```
 
+### [Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
+##### Complexity:
 
+(Iterative Solution)
+```python
+class Solution:
+	def kthSmallest(self, root: Treenode, k: int) -> int:
+		n = 0
+		stack = []
+		cur = root
+
+		while cur and stack:
+			while cur:
+				stack.append(cur)
+				cur = cur.left
+			
+			cur = stack.pop()
+			n += 1
+			if n == k:
+				return cur.val
+			cur = cur.right
+		
+```
+
+
+### Inorder Successor in BST
+##### Complexity:
+
+```python
+class Solution:
+	def inorderSuccessor(self, root: TreeNode, p: TreeNode) -> Optional[TreeNode]
+		successor = None
+
+		while root:
+			if p.val >= root.val:
+				root = root.right
+			else:
+				successor = root
+				root = root.left
+		return successor
+```
+
+
+### [Maximum Depth of a Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
+###### Complexity:
+
+```python
+class Solution:
+	def maxDepth(self, root: Optional[TreeNode]) -> int:
+		if not root:
+			return 0
+		else:
+			return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+```
+
+
+### Subtree of Another Tree
+##### Complexity: O(s * t) where s and t are the sizes of the tree inputs
+
+```python
+class Solution:
+	def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+	if not t: return True
+	if not s: return False
+	if self.sameTree(s, t):
+		return True
+	return (self.isSubtree(s.left, t) or
+			self.isSubtree(s.right, t))
+	
+	
+	
+	
+	
+	def sameTree(self, s, t):
+		if not s and not s:
+			return True
+		
+		if s and t and s.val == t.val:
+			return (self.sameTree(s.left, t.left) and
+					self.sameTree(s.right, t.right))
+		return False
+
+```
