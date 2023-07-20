@@ -374,30 +374,52 @@ class Solution:
 ```
 
 
-### Subtree of Another Tree
+### [Subtree of Another Tree](https://leetcode.com/problems/subtree-of-another-tree/)
 ##### Complexity: O(s * t) where s and t are the sizes of the tree inputs
 
 ```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-	def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-	if not t: return True
-	if not s: return False
-	if self.sameTree(s, t):
-		return True
-	return (self.isSubtree(s.left, t) or
-			self.isSubtree(s.right, t))
-	
-	
-	
-	
-	
-	def sameTree(self, s, t):
-		if not s and not s:
-			return True
-		
-		if s and t and s.val == t.val:
-			return (self.sameTree(s.left, t.left) and
-					self.sameTree(s.right, t.right))
-		return False
+    def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
+        if not t:
+            return True
+        if not s:
+            return False
+
+        if self.sameTree(s, t):
+            return True
+        return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
+
+    def sameTree(self, s, t):
+        if not s and not t:
+            return True
+        if s and t and s.val == t.val:
+            return self.sameTree(s.left, t.left) and self.sameTree(s.right, t.right)
+        return False
+
+
+```
+
+
+### Balanced Binary Tree
+##### Complexity
+
+```python
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        def dfs(root):
+            if not root:
+                return [True, 0]
+
+            left, right = dfs(root.left), dfs(root.right)
+            balanced = left[0] and right[0] and abs(left[1] - right[1]) <= 1
+            return [balanced, 1 + max(left[1], right[1])]
+
+        return dfs(root)[0]
 
 ```
