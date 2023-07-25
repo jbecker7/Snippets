@@ -114,8 +114,52 @@ class Solution:
 
 ### [Koko Eating Bananas (Medium)](https://leetcode.com/problems/koko-eating-bananas/)
 
+```python
+ class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        l, r = 1, max(piles)
+        res = max(piles)
+
+        while l <= r:
+            k = (l + r) // 2
+
+            totalTime = 0
+            for p in piles:
+                totalTime += math.ceil(p / k)
+            if totalTime <= h:
+                res = min(res, k)
+                r = k - 1
+            else:
+                l = k + 1
+        return res
+
+```
 
 
 ### [Heaters (Medium)](https://leetcode.com/problems/heaters/)
 
+```python
+class Solution:
+    def findRadius(self, houses: List[int], heaters: List[int]) -> int:
+        maxRadiusSeen = 0
+        heaters.sort()
+        for i in range(len(houses)):
+            left = 0
+            right = len(heaters) - 1
+            radiusReq = float('inf')
+            while left < right:
+                mid = (left + right) // 2
+                if heaters[mid] == houses[i]:
+                    radiusReq = 0
+                    break
+                elif heaters[mid] < houses[i]:
+                    radiusReq = min(radiusReq, abs(heaters[mid] - houses[i]))
+                    left = mid + 1
+                else:
+                    radiusReq = min(radiusReq, abs(heaters[mid] - houses[i]))
+                    right = mid
+            radiusReq = min(radiusReq, abs(heaters[left] - houses[i]))
+            maxRadiusSeen = max(maxRadiusSeen, radiusReq)
+        return(maxRadiusSeen)
+```
 
