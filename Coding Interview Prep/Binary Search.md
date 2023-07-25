@@ -1,7 +1,17 @@
 ## Runtime: O(log n)
-### Works by continuously dividing the size of the list
+-  Works by continuously dividing the size of the list
 	- In an iterative approach, this means cutting the size of the list with pointers
 	- In a recursive approach, this means calling the function again on smaller and smaller lists
+- General strategy for applying Binary Search:
+	- Figure out your pointers 
+		- Low is usually 0 or 1
+		- High is usually the maximum possible value
+		- Mid is almost always just low + (high-low)//2
+	- While loop/base case is almost always about low < right
+		- while low < high (iterative)
+		- if low > high (recursive)
+
+### Slightly Modified Binary Search (Returns closest if not target)
 
 ```python
 class findTarget:        
