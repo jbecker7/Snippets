@@ -1,5 +1,3 @@
-(I just spent a semester learning about graphs, so this is going to be a bit sparser.)
-
 ## Objects and Pointers
 #### Benefits:
 	- Good for edge insertion O(1)
@@ -78,4 +76,8 @@ class Solution:
 					islands += 1
 		return islands
 ```
+
+
+
+
 

@@ -11,6 +11,26 @@
 		- while low < high (iterative)
 		- if low > high (recursive)
 
+
+### [Binary Search (Easy)](https://leetcode.com/problems/binary-search/)
+
+```python
+class Solution:
+	def search(self, nums: List[int], target: int) -> int:
+		left, right = 0, len(nums) - 1
+		while left <= right:
+			middle = left + (right-left) // 2
+			if nums[middle] == target:
+				return middle 
+			elif nums[middle] < target:
+				left = middle + 1
+			else:
+				right = middle - 1
+		return -1
+```
+
+Remember it has to be `left <= right` and not just `left < right` or you will fail some of the test cases.
+
 ### Slightly Modified Binary Search (Returns closest if not target)
 
 ```python
