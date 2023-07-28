@@ -1,4 +1,4 @@
-## Background 
+## Fundamentals 
 
 - Trees are either
 	- Empty
@@ -22,57 +22,10 @@
 	- A key
 	- A list of children nodes
 	- (Optional) A parent
-### Breadth-First Search
-#### Time: O(V+E)
-#### Space: 
-- Implemented using a queue since the idea is to deal with things in the order we encounter them
-```python
-'''
-We assume that the graph is a dictionary where a key is a node and each value
-is an array with the node's neighbors.
-'''
-visited = []
-queue = []
-
-def bfs(visited, graph, node):
-  visited.append(node)
-  queue.append(node)
-
-  while queue:         
-    m = queue.pop(0) 
-    print (m, end = " ") 
-
-    for neighbor in graph[m]:
-      if neighbor not in visited:
-        visited.append(neighbor)
-        queue.append(neighbor)
-```
 
 
-### Depth-First Search 
-#### Time: O(V+E)
-#### Space: 
-- Implemented using a stack since the idea is to look at the most recently encountered nodes first
-```python
-#Assuming the same input as my BFS above
-visited = set() 
-
-def dfs(visited, graph, node): 
-    if node not in visited:
-        print (node)
-        visited.add(node)
-        for neighbor in graph[node]:
-            dfs(visited, graph, neighbor)
-```
-
-- Types of traversals
-	- Inorder (DFS: left, self, right)
-	- Post order (DFS: left, right, self)
-	- Preorder (DFS: self, left, right)
-
-
-## Binary Search Trees 
-#### Time: O(logn) (height of tree)
+### Binary Search Trees 
+##### Time: O(logn) (height of tree)
 (Cost of rebalancing?)
 - Characteristics:
 	- Binary Tree (so each node has a maximum of two children)
@@ -96,7 +49,7 @@ class Node:
 	def __init__(self, key):
 		self.key = key
 		self.left = None
-		self. right = None
+		self.right = None
 ```
 
 ##### BST Insertion 
@@ -157,9 +110,6 @@ def BST_size(node):
 	- "In a max heap, for any given node C, if P is a parent of C, then the key of P is greater than or equal to the key of C"
 	- "In a min heap, the key of P is less than or equal to the key of C"
 	- As in other data structures, the node at the top without parents is called the root node
-
-![[Pasted image 20230617125433.png]]
-
 - HeapSort
 	- Can be done using priority queues
 		- create an empty priority queue
@@ -221,8 +171,8 @@ def bubble_down(node):
 
 ## Tree LC Problems
 
-### [Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
-
+### Easy:
+#### [Binary Tree Inorder Traversal (Easy)](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
 #### Recursive Approach
 ##### Complexity: O(n)
 
@@ -243,125 +193,7 @@ class Solution:
 		
 ```
 
-
-### Iterative Approach
-
-(Do I need to add this lol)
-
-### [Binary Tree Zigzag Level Order Traversal](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
-
-##### Complexity: O(n)
-(Does space complexity get asked a lot)
-
-```python
-class Solution:
-	def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-		res = []
-		q = deque([root] if root else [])
-		while q:
-			level = []
-			for i in range(len(q)):
-				node = q.popleft()
-				level.append(node.val)
-				if node.left:
-					q.append(node.left)
-				if node.right:
-					q.append(node.right)
-			level = reversed(level) if len(res) % 2 == 1 else level
-			res.append(level)
-		return res
-```
-
-
-### [Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
-
-##### Complexity: 
-
-Some helpful facts:
-- First value in preorder traversal is *always* going to be the root
-	-Sublist can be considered recursively 
-```python
-class Solution:
-	def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
-		if not preorder or not inorder:
-			return None
-		
-		root = TreeNode(preorder[0])
-		mid = inorder.index(preorder[0])
-		root.left = self.buildTree(preorder[1:mid + 1], inorder[:mid])
-		root.right = self.buildTree(preorder[mid + 1:], inorder[mid + 1:])
-```
-
-
-### [Populating Next Right Pointers in Each Node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/)
-
-##### Complexity: O(n) for time and memory
-
-- We are essentially using BFS
-- Current node, connect next nodes
-- then switch next to be current and have its children as next
-```python
-class Solution:
-	def connect(self, node: 'Optional[Node]') -> 'Optional[Node]':
-		cur, nxt = node, node.left if node else None
-
-		while cur and nxt:
-			cur.left.next = cur.right
-			if cur.next:
-				cur.right.next = cur.next.left
-
-			cur = cur.next
-			if not cur:
-				cur = nxt
-				next = cur.left
-		
-		return node
-```
-
-### [Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
-##### Complexity:
-
-(Iterative Solution)
-```python
-class Solution:
-	def kthSmallest(self, root: Treenode, k: int) -> int:
-		n = 0
-		stack = []
-		cur = root
-
-		while cur and stack:
-			while cur:
-				stack.append(cur)
-				cur = cur.left
-			
-			cur = stack.pop()
-			n += 1
-			if n == k:
-				return cur.val
-			cur = cur.right
-		
-```
-
-
-### Inorder Successor in BST
-##### Complexity:
-
-```python
-class Solution:
-	def inorderSuccessor(self, root: TreeNode, p: TreeNode) -> Optional[TreeNode]
-		successor = None
-
-		while root:
-			if p.val >= root.val:
-				root = root.right
-			else:
-				successor = root
-				root = root.left
-		return successor
-```
-
-
-### [Maximum Depth of a Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
+#### [Maximum Depth of a Binary Tree (Easy)](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
 ###### Complexity:
 
 ```python
@@ -374,7 +206,7 @@ class Solution:
 ```
 
 
-### [Subtree of Another Tree](https://leetcode.com/problems/subtree-of-another-tree/)
+#### [Subtree of Another Tree (Easy)](https://leetcode.com/problems/subtree-of-another-tree/)
 ##### Complexity: O(s * t) where s and t are the sizes of the tree inputs
 
 ```python
@@ -406,7 +238,7 @@ class Solution:
 ```
 
 
-### Balanced Binary Tree
+#### [Balanced Binary Tree (Easy)](https://leetcode.com/problems/balanced-binary-tree/)
 ##### Complexity
 
 ```python
@@ -423,3 +255,120 @@ class Solution:
         return dfs(root)[0]
 
 ```
+
+
+### Medium:
+
+#### [Binary Tree Zigzag Level Order Traversal (Medium)](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
+
+##### Complexity: O(n)
+(Does space complexity get asked a lot)
+
+```python
+class Solution:
+	def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+		res = []
+		q = deque([root] if root else [])
+		while q:
+			level = []
+			for i in range(len(q)):
+				node = q.popleft()
+				level.append(node.val)
+				if node.left:
+					q.append(node.left)
+				if node.right:
+					q.append(node.right)
+			level = reversed(level) if len(res) % 2 == 1 else level
+			res.append(level)
+		return res
+```
+
+
+#### [Construct Binary Tree from Preorder and Inorder Traversal (Medium)](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+
+##### Complexity: 
+
+Some helpful facts:
+- First value in preorder traversal is *always* going to be the root
+	-Sublist can be considered recursively 
+```python
+class Solution:
+	def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+		if not preorder or not inorder:
+			return None
+		
+		root = TreeNode(preorder[0])
+		mid = inorder.index(preorder[0])
+		root.left = self.buildTree(preorder[1:mid + 1], inorder[:mid])
+		root.right = self.buildTree(preorder[mid + 1:], inorder[mid + 1:])
+```
+
+
+#### [Kth Smallest Element in a BST (Medium)](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
+##### Complexity:
+
+(Iterative Solution)
+```python
+class Solution:
+	def kthSmallest(self, root: Treenode, k: int) -> int:
+		n = 0
+		stack = []
+		cur = root
+
+		while cur and stack:
+			while cur:
+				stack.append(cur)
+				cur = cur.left
+			
+			cur = stack.pop()
+			n += 1
+			if n == k:
+				return cur.val
+			cur = cur.right
+		
+```
+
+
+#### [Populating Next Right Pointers in Each Node (Medium)](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/)
+
+##### Complexity: O(n) for time and memory
+
+- We are essentially using BFS
+- Current node, connect next nodes
+- then switch next to be current and have its children as next
+```python
+class Solution:
+	def connect(self, node: 'Optional[Node]') -> 'Optional[Node]':
+		cur, nxt = node, node.left if node else None
+
+		while cur and nxt:
+			cur.left.next = cur.right
+			if cur.next:
+				cur.right.next = cur.next.left
+
+			cur = cur.next
+			if not cur:
+				cur = nxt
+				next = cur.left
+		
+		return node
+```
+
+
+#### [Inorder Successor in BST (Medium)](https://leetcode.com/problems/inorder-successor-in-bst/description/)
+##### Complexity:
+
+```python
+class Solution:
+	def inorderSuccessor(self, root: TreeNode, p: TreeNode) -> Optional[TreeNode]
+		successor = None
+
+		while root:
+			if p.val >= root.val:
+				root = root.right
+			else:
+				successor = root
+				root = root.left
+		return successor
+```
+

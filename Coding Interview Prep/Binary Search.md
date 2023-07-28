@@ -1,4 +1,5 @@
-## Runtime: O(log n)
+## Fundamentals
+Runtime: O(log n)
 -  Works by continuously dividing the size of the list
 	- In an iterative approach, this means cutting the size of the list with pointers
 	- In a recursive approach, this means calling the function again on smaller and smaller lists
@@ -11,8 +12,37 @@
 		- while low < high (iterative)
 		- if low > high (recursive)
 
+#### Time: O(V+E)
+#### Space: 
+#### Example Implementation:
+- Implemented using a queue since the idea is to deal with things in the order we encounter them
+```python
+'''
+We assume that the graph is a dictionary where a key is a node and each value
+is an array with the node's neighbors.
+'''
+visited = []
+queue = []
 
-### [Binary Search (Easy)](https://leetcode.com/problems/binary-search/)
+def bfs(visited, graph, node):
+  visited.append(node)
+  queue.append(node)
+
+  while queue:         
+    m = queue.pop(0) 
+    print (m, end = " ") 
+
+    for neighbor in graph[m]:
+      if neighbor not in visited:
+        visited.append(neighbor)
+        queue.append(neighbor)
+```
+
+
+## Binary Search LC Problems 
+
+### Easy:
+#### [Binary Search (Easy)](https://leetcode.com/problems/binary-search/)
 
 ```python
 class Solution:
@@ -31,7 +61,7 @@ class Solution:
 
 Remember it has to be `left <= right` and not just `left < right` or you will fail some of the test cases.
 
-### Slightly Modified Binary Search (Returns closest if not target)
+#### Slightly Modified Binary Search (Returns closest if not target)
 
 ```python
 class findTarget:        
@@ -85,7 +115,7 @@ class findTarget:        
 ```
 
 
-### [Search Insert Position (Easy)](https://leetcode.com/problems/search-insert-position/)
+#### [Search Insert Position (Easy)](https://leetcode.com/problems/search-insert-position/)
 
 ```python
 class Solution:
@@ -112,7 +142,7 @@ def searchInsert(self, nums: List[int], target: int) -> int:
 ```
 
 
-### [Valid Perfect Square (Easy)](https://leetcode.com/problems/valid-perfect-square/)
+#### [Valid Perfect Square (Easy)](https://leetcode.com/problems/valid-perfect-square/)
 
 ```python
 class Solution:
@@ -142,7 +172,11 @@ class Solution:
 
 ```
 
-### [Koko Eating Bananas (Medium)](https://leetcode.com/problems/koko-eating-bananas/)
+
+### Medium:
+
+
+#### [Koko Eating Bananas (Medium)](https://leetcode.com/problems/koko-eating-bananas/)
 
 ```python
  class Solution:
@@ -166,7 +200,7 @@ class Solution:
 ```
 
 
-### [Heaters (Medium)](https://leetcode.com/problems/heaters/)
+#### [Heaters (Medium)](https://leetcode.com/problems/heaters/)
 
 ```python
 class Solution:

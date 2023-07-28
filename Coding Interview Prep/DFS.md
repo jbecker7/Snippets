@@ -1,4 +1,4 @@
-## Fundamentals
+### Fundamentals
 
 This is a very basic recursive DFS. 
 
@@ -9,6 +9,8 @@ This is a very basic recursive DFS.
 - Once we get to the right subtree, we do the same thing
 	- If it finds target, it returns it
 	- Otherwise we return None, which means it was not in the right subtree either (and thus does not exist)
+
+#### Example Implementation:
 
 ```python
 def dfs(root, target):
@@ -31,9 +33,35 @@ When it comes to doing it outside of just trees:
 4. We need to check all the directions
 
 
+
+
+### Depth-First Search 
+#### Time: O(V+E)
+#### Space: 
+- Implemented using a stack since the idea is to look at the most recently encountered nodes first
+```python
+#Assuming the same input as my BFS above
+visited = set() 
+
+def dfs(visited, graph, node): 
+    if node not in visited:
+        print (node)
+        visited.add(node)
+        for neighbor in graph[node]:
+            dfs(visited, graph, neighbor)
+```
+
+- Types of traversals
+	- Inorder (DFS: left, self, right)
+	- Post order (DFS: left, right, self)
+	- Preorder (DFS: self, left, right)
+
+
 ## DFS LC Problems 
 
-### [Find All The Lonely Nodes (Easy)](https://leetcode.com/problems/find-all-the-lonely-nodes/description/)
+### Easy:
+
+#### [Find All The Lonely Nodes (Easy)](https://leetcode.com/problems/find-all-the-lonely-nodes/description/)
 A recursive solution like this is a lot more elegant.
 
 ```python
@@ -57,7 +85,7 @@ class Solution:
 ```
 
 
-### [Island Perimeter (Easy)](https://leetcode.com/problems/island-perimeter/)
+#### [Island Perimeter (Easy)](https://leetcode.com/problems/island-perimeter/)
 
 ```python
 class Solution:
@@ -87,7 +115,24 @@ The part below is literally just to get us started--find one land--because we ar
 					return dfs(i,j)
 ```
 
-### [Detect Cycles in 2D Grid (Medium)](https://leetcode.com/problems/detect-cycles-in-2d-grid/description/)
+
+#### [Maximum Depth of a Binary Tree (Easy)](https://leetcode.com/problems/maximum-depth-of-binary-tree/description/)
+
+```python
+class Solution:
+	def maxDepth(self, root: Optional[TreeNode]) -> int:
+		if not root:
+			return 0 
+		else:
+			return 1+max(self.maxDepth(root.left),
+			 self.maxDepth(root.right))
+```
+
+
+### Medium:
+
+
+#### [Detect Cycles in 2D Grid (Medium)](https://leetcode.com/problems/detect-cycles-in-2d-grid/description/)
 
 ```python
 class Solution:
@@ -118,7 +163,7 @@ class Solution:
 
 ```
 
-### [Max Island Size (Medium)](https://leetcode.com/problems/max-area-of-island/)
+#### [Max Island Size (Medium)](https://leetcode.com/problems/max-area-of-island/)
 
 ```python
 class Solution:
@@ -157,5 +202,22 @@ class Solution:
 
 
 
-### [All Paths From Source to Target (Medium)](https://leetcode.com/problems/all-paths-from-source-to-target/)
+#### [All Paths From Source to Target (Medium)](https://leetcode.com/problems/all-paths-from-source-to-target/)
 
+```python
+class Solution:
+    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+        end = len(graph) - 1
+
+        def dfs(node, path, output):
+            if node == end:
+                output.append(path)
+
+            for nx in graph[node]:
+                dfs(nx, path+[nx], output)
+
+        output = []
+        dfs(0,[0],output)
+        return output
+
+```
