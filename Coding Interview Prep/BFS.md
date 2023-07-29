@@ -81,4 +81,45 @@ class Solution:
 					bfs(r, c)
 	return maxislands
 
+```
 
+
+### [Minimum Knight Moves (Medium)](https://leetcode.com/problems/minimum-knight-moves/)
+
+Slow Brute Force:
+
+```python
+class Solution:
+	def minKnightMoves(self, x: int, y: int) -> int:
+		memo = {(0,0):0}
+		queue = collections.deque([(0,0)])
+		
+		def get_next(loc):
+			xx, yy = loc
+			for dx, dy in [(2, 1), (1, 2), (-2, 1), (-1, 2), (2, -1),
+			 (1, -2), (-1, -2), (-2, -1)]:
+				 nx, ny = xx + dx, yy + dy
+				 if (nx, ny) in memo: continue 
+				 yield (nx, ny)
+		
+		step = 0
+		while (x,y) not in memo:
+			step += 1
+			for _ in range(len(queue)):
+				loc = queue.popleft()
+				for next_loc in get_next(loc):
+					memo[next_loc] = step
+					queue.append(next_loc)
+
+		
+		return memo[(x,y)]
+```
+
+
+### [Snakes and Ladders (Medium)](https://leetcode.com/problems/snakes-and-ladders/)
+
+
+### [Pacific Atlantic Water Flow (Medium)](https://leetcode.com/problems/pacific-atlantic-water-flow/)
+
+
+### [The Maze (Medium)](https://leetcode.com/problems/the-maze/)
