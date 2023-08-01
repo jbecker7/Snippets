@@ -61,6 +61,23 @@ def dfs(visited, graph, node):
 
 ### Easy:
 
+
+### [Max Depth of N-ary Trees (Easy)](https://leetcode.com/problems/maximum-depth-of-n-ary-tree/description/)
+
+```python
+class Solution:
+	def maxDepth(self, root: 'Node') -> int:
+		if not root:
+			return 0
+		depth = 1
+		if root.children:
+			depth += max(self.maxDepth(child) for child in root.children)
+
+		return depth
+```
+
+
+
 #### [Find All The Lonely Nodes (Easy)](https://leetcode.com/problems/find-all-the-lonely-nodes/description/)
 A recursive solution like this is a lot more elegant.
 

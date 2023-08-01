@@ -4,6 +4,40 @@
 
 ## Easy:
 
+```python
+class Solution:
+	def getTargetCopy(self, original: TreeNode, cloned: TreeNode, target: TreeNode) -> TreeNode:
+		if not original:
+			return None
+
+		if original is target:
+			return cloned
+
+#remember that "or" below will just return the first one that evaluates to True
+
+		return self.getTargetCopy(original.left, cloned.left, target) or 
+		self.getTargetCopy(original.right, cloned.right, target)
+```
+
+
+### [Merge Two Binary Trees (Easy)](https://leetcode.com/problems/merge-two-binary-trees/description/)
+
+
+```python
+class Solution:
+	def mergeTrees(self, t1, t2):
+		if t1 and t2:
+			root = TreeNode(t1.val + t2.val)
+			root.left = self.mergeTrees(t1.left, t2.left)
+			root.right = self.mergeTrees(t1.right, t2.right)
+			return root
+
+else:
+	return t1 or t2
+```
+
+
+
 
 ## Medium:
 
@@ -118,8 +152,88 @@ class Solution:
 
 ### [Snakes and Ladders (Medium)](https://leetcode.com/problems/snakes-and-ladders/)
 
+```python
+class Solution:
+	def snakesAndLadders(self, board: List[List[int]]) -> int:
+	n = len(board)
+	
+	def label_to_position(label):
+		r, c = divmod(label-1, n)
+		if r % 2 == 0:
+			return n-1-r, c
+		else:
+			return n-1-r, n-1-c
+	
+	seen = set()
+	queue = collections.deque()
+	queue.append((1, 0))
+	while queue:
+		label, step = queue.popleft()
+		r, c = label_to_position(label)
+		if board[r][c] != -1:
+			label = board[r][c]
+		if label == n*n:
+			return step
+		for x in range(1, 7):
+			new_label = label + x
+			if new_label <= n*n and new_label not in seen:
+				seen.add(new_label)
+				queue.append((new_label, step+1))
+	return -1
+```
+Yeah so I def do not understand what is going on in the above just yet hahahaha to be revisited
+
 
 ### [Pacific Atlantic Water Flow (Medium)](https://leetcode.com/problems/pacific-atlantic-water-flow/)
+```python
+class Solution:
+	def pacificAtlantic(self, matrix: List[List[int]]) -> List[List[int]]:
+		if not matrix:
+			return []
+		p_land = set()
+		a_land = set()
+		R, C = len(matrix), len(matrix[0])
+		def spread(i, j, land):
+			land.add((i, j))
+			for x, y in ((i+1, j), (i, j+1), (i-1, j), (i, j-1)):
+				if (0<=x<R and 0<=y<C and matrix[x][y] >= matrix[i][j]
+				and (x, y) not in land):
+					spread(x, y, land)
+		for i in range(R):
+			spread(i, 0, p_land)
+			spread(i, C-1, a_land)
+		for j in range(C):
+			spread(0, j, p_land)
+			spread(R-1, j, a_land)
+
+		return list(p_land & a_land)
+```
 
 
 ### [The Maze (Medium)](https://leetcode.com/problems/the-maze/)
+
+```python
+class Solution:
+		def hasPath(self, maze: List[List[int]], start: List[int],
+		 destination: List[int]) -> bool:
+			stack = [start]
+			n, m = len(maze), len(maze[0])
+			dirs = ((0,1), (0,-1),(1,0), (-1,0))
+			stopped = set()
+
+			while stack:
+				r, c = stack.pop()
+				if [r,c] == destination: return True
+				for dr, dc in dirs:
+					nwR, nwC = r, c
+					while 0 <= nwR + dr <= n-1 and 0 <= nwC + dc <= m-1
+					 and maze[nwR+dr][nwC+dc] == 0:
+						nwR += dr
+						nwC += dc
+					if (nwR, nwC) in stopped: continue
+					else:
+						stopped.add((nwR, nwC))
+						stack.append(([nwR, nwC]))
+
+			return False
+```
