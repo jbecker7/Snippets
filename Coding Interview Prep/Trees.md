@@ -205,7 +205,22 @@ class Solution:
 			return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
 ```
 
+#### [Same Tree (Easy)](https://leetcode.com/problems/same-tree/description/)
 
+```python
+class Solution:
+	def isSameTree(self, p: Optional[TreeNode], q:
+		Optional[TreeNode]) -> bool:
+		
+			if not p and not q:
+				return True
+			if p and not q or q and not p:
+				return False 
+			if p.val != q.val:
+				return False 
+				
+			return self.isSameTree(p.right, q.right) and self.isSameTree(p.left, q.left)
+```
 #### [Subtree of Another Tree (Easy)](https://leetcode.com/problems/subtree-of-another-tree/)
 ##### Complexity: O(s * t) where s and t are the sizes of the tree inputs
 
@@ -257,7 +272,118 @@ class Solution:
 ```
 
 
+#### [Range Sum of BST (Easy)](https://leetcode.com/problems/range-sum-of-bst/description/)
+```python
+class Solution:
+#This is a really neat solution and leverages BST structure
+def rangeSumBST(self, root: TreeNode, L: int, R: int) -> int:
+	if not root: return 0
+	if root.val > R: return self.rangeSumBST(root.left,L,R)
+	if root.val < L: return self.rangeSumBST(root.right,L,R)
+	return root.val + self.rangeSumBST(root.left,L,R) + 
+		self.rangeSumBST(root.right,L,R)
+```
+
+#### [Root Equals Sum of Children (Easy)](https://leetcode.com/problems/root-equals-sum-of-children/description/)
+```python
+# I think this is the easiest LC problem I have ever seen
+class Solution:
+	def checkTree(self, root: Optional[TreeNode]) -> bool:
+		if root.val == root.left.val + root.right.val:
+			return True
+		else:
+			return False
+```
+
+
+#### [Search in a Binary Search Tree (Easy)](https://leetcode.com/problems/search-in-a-binary-search-tree/description/)
+```python
+class Solution:
+	def searchBST(self, root: TreeNode, val: int) -> TreeNode:
+		if not root:
+			return 
+		if root.val==val:
+			return root.key 
+		if root.val<val:
+			return self.searchBST(root.right,val)
+		else:
+			return self.searchBST(root.left,val)
+```
+
+#### [Evaluate Boolean Binary Tree (Easy)](https://leetcode.com/problems/evaluate-boolean-binary-tree/description/)
+```python
+class Solution:
+	def evaluateTree(self, root: Optional[TreeNode]) -> bool:
+		if root.val==0 or root.val==1:
+			return root.val 
+		if root.val==2:
+			return self.evaluateTree(root.left) or 
+			self.evaluateTree(root.right)
+		if root.val==3:
+			return self.evaluateTree(root.left) and 
+			self.evaluateTree(root.right)
+```
+
+#### [Binary Tree Paths (Easy)](https://leetcode.com/problems/binary-tree-paths/)
+
+```python
+class Solution:
+	def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+
+	ret = []
+
+		def dfs(node, path):
+			if node is None:
+				return
+		
+			if node.left is None and node.right is None:
+				path.append(node.val)
+				ret.append("->".join(str(p) for p in path))
+				path.pop()
+				return
+		
+			path.append(node.val)
+			dfs(node.left, path)
+			dfs(node.right, path)
+			path.pop()
+		
+		dfs(root, [])
+		return ret
+```
+
+
+#### [Symmetric Tree (Easy)](https://leetcode.com/problems/symmetric-tree/)
+```python
+class Solution:
+	def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+		def dfs(left, right):
+			if not left and not right:
+				return True
+			if not left or not right:
+				return False 
+			return (left.val == right.val and 
+			dfs(left.left, right.right) assigned 
+			dfs(left.right, right.left))
+			
+		return dfs(root.left, root.right)
+```
+
+
+
+
+
+
+
+
+
 ### Medium:
+
+Find Duplicate Subtrees 
+
+```python
+class Solution: def findDuplicateSubtrees(self, root: Optional[TreeNode]) -> List[Optional[TreeNode]]: ans = [] count = collections.Counter() def encode(root: Optional[TreeNode]) -> str: if not root: return '' encoded = str(root.val) + '#' + \ encode(root.left) + '#' + \ encode(root.right) count[encoded] += 1 if count[encoded] == 2: ans.append(root) return encoded encode(root) return ans
+```
+
 
 #### [Binary Tree Zigzag Level Order Traversal (Medium)](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
 
@@ -371,4 +497,12 @@ class Solution:
 				root = root.left
 		return successor
 ```
+
+
+#### [Serialize and Deserialize BST (Medium)](https://leetcode.com/problems/serialize-and-deserialize-bst/)
+
+
+
+#### [Lowest Common Ancestor of a Binary Search Tree (Medium)](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
+
 
